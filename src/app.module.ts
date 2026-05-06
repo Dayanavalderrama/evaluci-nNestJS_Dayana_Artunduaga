@@ -1,10 +1,14 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { MongooseModule } from '@nestjs/mongoose';
+import { CategoriasModule } from './categorias/categorias.module';
+import* as dotenv from 'dotenv';
 
+dotenv.config();
 @Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [
+    MongooseModule.forRoot('mongodb://localhost:27017/tiendapequena', ),
+    CategoriasModule,
+    ProductosModule,
+  ],
 })
 export class AppModule {}
